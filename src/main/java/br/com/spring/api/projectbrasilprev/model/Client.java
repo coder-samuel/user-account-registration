@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -14,6 +15,8 @@ import javax.validation.constraints.Email;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.br.CPF;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "tb_client", uniqueConstraints = {@UniqueConstraint(columnNames = "cpf")})
@@ -39,14 +42,17 @@ public class Client {
 
     private String gender;
     
+    @ManyToOne
+    @JsonIgnoreProperties("client")
+    private Address address;
     
-    
-    public Client(String name, String email, String cpf, Date birthday, String gender) {
+    public Client(String name, String email, String cpf, Date birthday, String gender, Address address) {
         this.name = name;
         this.email = email;
         this.cpf = cpf;
         this.birthday = birthday;
         this.gender = gender;
+        this.address = address;
     }
 
     public Client() {
@@ -99,5 +105,15 @@ public class Client {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+	
+	
 
 }

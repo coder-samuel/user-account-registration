@@ -1,15 +1,21 @@
 package br.com.spring.api.projectbrasilprev.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "tb_address")
@@ -40,10 +46,14 @@ public class Address {
     
     @NotBlank(message = "CEP is required")
     private String cep;
-
+    
+    @OneToMany(mappedBy = "address", cascade = {CascadeType.REMOVE})
+    @JsonIgnoreProperties("address")
+    private List<Client> client;
+    
     
     public Address (int id, String cep, String state, String number,
-    	String district, String complement, String city, String street) {
+    	String district, String complement, String city, String street, List<Client> client) {
     	this.id = id;
     	this.cep = cep;
     	this.state = state;
@@ -52,6 +62,7 @@ public class Address {
     	this.complement = complement;
     	this.city = city;
     	this.street = street;
+    	this.client = client;
     }
     
 	public int getId() {
@@ -116,6 +127,14 @@ public class Address {
 
 	public void setCep(String cep) {
 		this.cep = cep;
+	}
+
+	public List<Client> getClient() {
+		return client;
+	}
+
+	public void setClient(List<Client> client) {
+		this.client = client;
 	}
 
 
