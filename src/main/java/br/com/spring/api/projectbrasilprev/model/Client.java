@@ -16,7 +16,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.br.CPF;
 
 @Entity
-@Table(uniqueConstraints = {@UniqueConstraint(columnNames = "cpf")})
+@Table(name = "tb_client", uniqueConstraints = {@UniqueConstraint(columnNames = "cpf")})
 public class Client {
 
     @Id
