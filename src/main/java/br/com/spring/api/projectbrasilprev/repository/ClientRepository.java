@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import br.com.spring.api.projectbrasilprev.model.Client;
 
 @Repository
-public interface ClientRepository extends JpaRepository<Client, Integer> {
-	List<Client> findByNameContains( String name);
+public interface ClientRepository extends JpaRepository<Client, Long> {
+	List<Client> findByClient( String client);
 }

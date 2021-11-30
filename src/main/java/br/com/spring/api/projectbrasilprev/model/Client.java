@@ -35,7 +35,7 @@ public class Client {
 
     @CPF(message = "Invalid CPF")
     @Column(unique = true, nullable = false)
-    private String cpf;
+    private int cpf;
 
     @NotBlank(message = "Birthday is required")
     private Date birthday;
@@ -46,7 +46,7 @@ public class Client {
     @JsonIgnoreProperties("client")
     private Address address;
     
-    public Client(String name, String email, String cpf, Date birthday, String gender, Address address) {
+    public Client(String name, String email, int cpf, Date birthday, String gender, Address address) {
         this.name = name;
         this.email = email;
         this.cpf = cpf;
@@ -82,15 +82,16 @@ public class Client {
         this.email = email;
     }
 
-    public String getCpf() {
-        return cpf;
-    }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
+    public int getCpf() {
+		return cpf;
+	}
 
-    public Date getBirthday() {
+	public void setCpf(int cpf) {
+		this.cpf = cpf;
+	}
+
+	public Date getBirthday() {
         return birthday;
     }
 
