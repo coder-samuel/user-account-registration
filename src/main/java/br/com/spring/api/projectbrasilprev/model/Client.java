@@ -1,5 +1,7 @@
 package br.com.spring.api.projectbrasilprev.model;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,13 +35,18 @@ public class Client {
     private String cpf;
 
     @NotBlank(message = "Birthday is required")
-    private String birthday;
+    private Date birthday;
 
-    public Client(String name, String email, String cpf, String birthday) {
+    private String gender;
+    
+    
+    
+    public Client(String name, String email, String cpf, Date birthday, String gender) {
         this.name = name;
         this.email = email;
         this.cpf = cpf;
         this.birthday = birthday;
+        this.gender = gender;
     }
 
     public Client() {
@@ -77,12 +84,20 @@ public class Client {
         this.cpf = cpf;
     }
 
-    public String getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(String birthday) {
+    public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
 
 }
