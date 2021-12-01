@@ -1,4 +1,4 @@
-package br.com.spring.api.projectbrasilprev.model;
+package org.keeggo.api.brasilprev.model;
 
 import java.sql.Date;
 
@@ -10,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
@@ -19,14 +18,14 @@ import org.hibernate.validator.constraints.br.CPF;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "tb_client", uniqueConstraints = {@UniqueConstraint(columnNames = "cpf")})
-public class Client {
+@Table(name = "tb_users", uniqueConstraints = {@UniqueConstraint(columnNames = "cpf")})
+public class UserAccount {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotBlank(message = "Name is required")
+    @NotNull(message = "Name is required")
     private String name;
 
     @Email(message = "Invalid e-mail")
@@ -37,7 +36,7 @@ public class Client {
     @Column(unique = true, nullable = false)
     private int cpf;
 
-    @NotBlank(message = "Birthday is required")
+    @NotNull(message = "Birthday is required")
     private Date birthday;
 
     private String gender;
@@ -52,7 +51,7 @@ public class Client {
     @JsonIgnoreProperties("client")
     private Address address;
     
-    public Client(String name, String email, int cpf, Date birthday, String gender, Address address, String username, String password) {
+    public UserAccount(String name, String email, int cpf, Date birthday, String gender, Address address, String username, String password) {
         this.name = name;
         this.email = email;
         this.cpf = cpf;
@@ -63,8 +62,6 @@ public class Client {
         this.password = password;
     }
 
-    public Client() {
-    }
 
     public int getId() {
         return id;
@@ -138,6 +135,5 @@ public class Client {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
 
 }

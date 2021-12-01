@@ -1,66 +1,59 @@
-package br.com.spring.api.projectbrasilprev.security;
+package org.keeggo.api.brasilprev.security;
 
 import java.util.Collection;
 import java.util.List;
 
+import org.keeggo.api.brasilprev.model.UserAccount;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import br.com.spring.api.projectbrasilprev.model.Client;
-
 public class UserDetailsImpl implements UserDetails{
-	
 	private static final long serialVersionUID = 1L;
-	
-	private String userName;
-	private String passWord;
+
+	private String username;
+	private String password;
 	private List<GrantedAuthority> authorities;
-	
-	public UserDetailsImpl (Client user) {
-		this.userName = user.getUsername();
-		this.passWord = user.getPassword();
+
+	public UserDetailsImpl(UserAccount user) {
+		this.username = user.getUsername();
+		this.password = user.getPassword();		
 	}
+
+	public UserDetailsImpl() {}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return null;
+		return authorities;
 	}
 
 	@Override
 	public String getPassword() {
-		// TODO Auto-generated method stub
-		return passWord;
+		return password;
 	}
 
 	@Override
 	public String getUsername() {
-		// TODO Auto-generated method stub
-		return userName;
+
+		return username;
 	}
 
 	@Override
 	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
 	@Override
 	public boolean isEnabled() {
-		// TODO Auto-generated method stub
 		return true;
 	}
-
-}
+} 

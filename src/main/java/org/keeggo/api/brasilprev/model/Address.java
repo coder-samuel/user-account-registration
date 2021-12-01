@@ -1,4 +1,4 @@
-package br.com.spring.api.projectbrasilprev.model;
+package org.keeggo.api.brasilprev.model;
 
 import java.util.List;
 
@@ -13,8 +13,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.hibernate.validator.constraints.NotBlank;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -25,10 +23,10 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotBlank(message = "Street is required")
+    @NotNull(message = "Street is required")
     private String street;
 
-    @NotBlank(message = "City is required")
+    @NotNull(message = "City is required")
     private String city;
     
     @Size(min = 15, max = 140)
@@ -38,22 +36,22 @@ public class Address {
     @Column(unique = true, nullable = false)
     private String number;
 
-    @NotBlank(message = "District is required")
+    @NotNull(message = "District is required")
     private String district;
     
-    @NotBlank(message = "State is required")
+    @NotNull(message = "State is required")
     private String state;
     
-    @NotBlank(message = "CEP is required")
+    @NotNull(message = "CEP is required")
     private String cep;
     
     @OneToMany(mappedBy = "address", cascade = {CascadeType.REMOVE})
     @JsonIgnoreProperties("address")
-    private List<Client> client;
+    private List<UserAccount> userAccount;
     
     
     public Address (int id, String cep, String state, String number,
-    	String district, String complement, String city, String street, List<Client> client) {
+    	String district, String complement, String city, String street, List<UserAccount> userAccount) {
     	this.id = id;
     	this.cep = cep;
     	this.state = state;
@@ -62,7 +60,7 @@ public class Address {
     	this.complement = complement;
     	this.city = city;
     	this.street = street;
-    	this.client = client;
+    	this.userAccount = userAccount;
     }
     
 	public int getId() {
@@ -129,13 +127,14 @@ public class Address {
 		this.cep = cep;
 	}
 
-	public List<Client> getClient() {
-		return client;
+	public List<UserAccount> getUserAccount() {
+		return userAccount;
 	}
 
-	public void setClient(List<Client> client) {
-		this.client = client;
+	public void setUserAccount(List<UserAccount> userAccount) {
+		this.userAccount = userAccount;
 	}
-
+	
+	
 
 }

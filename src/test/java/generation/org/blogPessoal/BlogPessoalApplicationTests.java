@@ -1,10 +1,10 @@
-package br.com.spring.api.projectbrasilprev;
+package generation.org.blogPessoal;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ProjectbrasilprevApplicationTests {
+class BlogPessoalApplicationTests {
 
 	@Test
 	void contextLoads() {

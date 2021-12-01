@@ -1,37 +1,26 @@
-package br.com.spring.api.projectbrasilprev.model;
+package org.keeggo.api.brasilprev.model;
 
-import org.hibernate.validator.constraints.NotBlank;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
-import javax.persistence.*;
-
-
-@Entity
-@Table(name = "user")
 public class UserLogin {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotBlank(message = "")
-    @Column(nullable = false, length = 25)
+    @NotNull(message = "")
     private String username;
     
-    @NotBlank(message = "")
-    @Column(nullable = false, length = 35)
+    @NotNull(message = "")
     private String email;
 
-    @NotBlank(message = "")
-    @Column(nullable = false, length = 64)
+    @NotNull(message = "")
     private String password;
 
-    @Column(nullable = false, name = "actived")
     private boolean actived;
-
-    public UserLogin() {
-        super();
-    }
 
     public UserLogin(int id, String username, String email, String password, boolean actived) {
         this.id = id;
@@ -64,15 +53,13 @@ public class UserLogin {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
+	
 	public String getPassword() {
 		return password;
 	}
 
 	public void setPassword(String password) {
-		 BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-	        bCryptPasswordEncoder.encode(password);
-	        this.password = bCryptPasswordEncoder.encode(password);
+		this.password = password;
 	}
 
 	public boolean isActived() {
