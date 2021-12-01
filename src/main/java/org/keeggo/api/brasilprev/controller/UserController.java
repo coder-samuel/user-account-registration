@@ -35,13 +35,13 @@ public class UserController {
 
 	@PostMapping("/login")
 	public ResponseEntity<UserLogin> Autentication(@RequestBody Optional<UserLogin> user) {
-		return userService.Logar(user).map(resp -> ResponseEntity.ok(resp))
+		return userService.Login(user).map(resp -> ResponseEntity.ok(resp))
 				.orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
 	}
 
 	@PostMapping("/register")
 	public ResponseEntity<UserAccount> Post(@RequestBody UserAccount userAccount) {
-		Optional<UserAccount> user = userService.CadastrarUsuario(userAccount);
+		Optional<UserAccount> user = userService.newCustomer(userAccount);
 		try {
 				return ResponseEntity.ok(user.get());
 		} catch (Exception e) {

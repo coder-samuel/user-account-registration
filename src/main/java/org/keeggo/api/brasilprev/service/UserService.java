@@ -17,7 +17,7 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 
-	public Optional<UserAccount> CadastrarUsuario(UserAccount userAccount) {
+	public Optional<UserAccount> newCustomer(UserAccount userAccount) {
 		
 		
 		if(userRepository.findByUsername(userAccount.getUsername()).isPresent())
@@ -31,7 +31,7 @@ public class UserService {
 		return Optional.of(userRepository.save(userAccount));
 	}
 
-	public Optional<UserLogin> Logar(Optional<UserLogin> user) {
+	public Optional<UserLogin> Login(Optional<UserLogin> user) {
 
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		Optional<UserAccount> userAccount = userRepository.findByUsername(user.get().getUsername());
