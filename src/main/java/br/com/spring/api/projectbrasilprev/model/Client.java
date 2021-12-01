@@ -12,8 +12,8 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.br.CPF;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -42,17 +42,25 @@ public class Client {
 
     private String gender;
     
+    @NotNull
+    private String username;
+    
+    @NotNull
+	private String password;
+    
     @ManyToOne
     @JsonIgnoreProperties("client")
     private Address address;
     
-    public Client(String name, String email, int cpf, Date birthday, String gender, Address address) {
+    public Client(String name, String email, int cpf, Date birthday, String gender, Address address, String username, String password) {
         this.name = name;
         this.email = email;
         this.cpf = cpf;
         this.birthday = birthday;
         this.gender = gender;
         this.address = address;
+        this.username = username;
+        this.password = password;
     }
 
     public Client() {
@@ -115,6 +123,21 @@ public class Client {
 		this.address = address;
 	}
 	
-	
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 
 }
