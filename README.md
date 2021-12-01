@@ -2,6 +2,11 @@
 
 [Access the cloud application through this link](https://git.heroku.com/user-account-registration.git)
 <br>
+
+# Technologies:
+![tecnologias](https://user-images.githubusercontent.com/80654468/144280772-8415db84-f6ba-4643-a796-99d10ce20112.png)
+
+<br>
 SpringBoot project for managing the registration of customerqusers in a rest system.
 
 This article will walk you through building an application called user-account-registration.
