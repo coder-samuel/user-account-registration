@@ -7,6 +7,29 @@
 ![tecnologias](https://user-images.githubusercontent.com/80654468/144280772-8415db84-f6ba-4643-a796-99d10ce20112.png)
 
 <br>
+
+## About this project 
+<br>
+This is a simple API that aims to manage users, courses and enrollments.
+
+Technologies are used: 
+- Java 
+- Maven 3+ 
+- Spring Boot 
+- Spring Web 
+- Bean Validation 
+- Spring Data JPA 
+- PostgresSQL, the relational BD
+<br>
+
+### What is already implemented?
+The following endpoints are implemented:
+- `GET /users/{username}` gets a user's details
+- `POST /users` adds a new user 
+- `GET /address` lists addresses already registered 
+- `POST /address` adds a new address 
+- `GET /address/{id}` gets the details of a course
+
 SpringBoot project for managing the registration of customerqusers in a rest system.
 
 This article will walk you through building an application called user-account-registration.
