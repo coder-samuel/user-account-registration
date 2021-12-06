@@ -10,7 +10,7 @@
 
 ## About this project 
 <br>
-This is a simple API that aims to manage users, courses and enrollments.
+This is a simple API that aims to manage users and addresses.
 
 Technologies are used: 
 - Java 
