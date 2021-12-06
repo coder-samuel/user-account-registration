@@ -28,7 +28,7 @@ The following endpoints are implemented:
 - `POST /users` adds a new user 
 - `GET /address` lists addresses already registered 
 - `POST /address` adds a new address 
-- `GET /address/{id}` gets the details of a course
+- `GET /address/{id}` gets the details of a address
 
 SpringBoot project for managing the registration of customerqusers in a rest system.
 
