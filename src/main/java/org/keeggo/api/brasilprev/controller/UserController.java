@@ -1,11 +1,15 @@
 package org.keeggo.api.brasilprev.controller;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
+
+import javax.validation.Valid;
 
 import org.keeggo.api.brasilprev.model.UserAccount;
 import org.keeggo.api.brasilprev.model.UserLogin;
 import org.keeggo.api.brasilprev.repository.UserRepository;
+import org.keeggo.api.brasilprev.request.NewUserRequest;
 import org.keeggo.api.brasilprev.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +20,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import static java.lang.String.format;
 
 @RestController
 @RequestMapping("/users")
@@ -39,15 +45,10 @@ public class UserController {
 				.orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
 	}
 
-	@PostMapping("/register")
-	public ResponseEntity<UserAccount> Post(@RequestBody UserAccount userAccount) {
-		Optional<UserAccount> user = userService.newCustomer(userAccount);
-		try {
-				return ResponseEntity.ok(user.get());
-		} catch (Exception e) {
-			return ResponseEntity.badRequest().build();
-		}
-		
-	}
-
+	@PostMapping("/users")
+    ResponseEntity<Void> newUserAccount(@RequestBody @Valid NewUserRequest newUserRequest) {
+        userRepository.save(newUserRequest.toEntity());
+        URI location = URI.create(format("/users/%s", newUserRequest.getUsername()));
+        return ResponseEntity.created(location).build();
+    }
 }

@@ -3,7 +3,6 @@ package org.keeggo.api.brasilprev.controller;
 import java.util.List;
 
 import org.keeggo.api.brasilprev.model.Address;
-import org.keeggo.api.brasilprev.model.UserAccount;
 import org.keeggo.api.brasilprev.repository.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

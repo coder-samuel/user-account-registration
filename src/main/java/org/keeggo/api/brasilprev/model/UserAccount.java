@@ -1,7 +1,5 @@
 package org.keeggo.api.brasilprev.model;
 
-import java.sql.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +9,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.br.CPF;
 
@@ -25,39 +24,37 @@ public class UserAccount {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotNull(message = "Name is required")
+    @NotBlank(message = "Name is required")
     private String name;
 
+    @NotBlank
     @Email(message = "Invalid e-mail")
     @Column(unique = true, nullable = false)
     private String email;
 
+    @NotBlank
     @CPF(message = "Invalid CPF")
     @Column(unique = true, nullable = false)
-    private int cpf;
-
-    @NotNull(message = "Birthday is required")
-    private Date birthday;
+    @Size(min=11, max=11)
+    private String cpf;
 
     private String gender;
     
-    @NotNull
+    @NotBlank
     private String username;
     
-    @NotNull
+    @NotBlank
 	private String password;
     
     @ManyToOne
-    @JsonIgnoreProperties("client")
+    @JsonIgnoreProperties("users")
     private Address address;
     
-    public UserAccount(String name, String email, int cpf, Date birthday, String gender, Address address, String username, String password) {
+    public UserAccount(String name, String email, String cpf, String gender, String username, String password) {
         this.name = name;
         this.email = email;
         this.cpf = cpf;
-        this.birthday = birthday;
         this.gender = gender;
-        this.address = address;
         this.username = username;
         this.password = password;
     }
@@ -87,22 +84,13 @@ public class UserAccount {
         this.email = email;
     }
 
-
-    public int getCpf() {
+    public String getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(int cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-
-	public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
 
 	public String getGender() {
 		return gender;

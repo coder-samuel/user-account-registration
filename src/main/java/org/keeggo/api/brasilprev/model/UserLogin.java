@@ -21,13 +21,14 @@ public class UserLogin {
     private String password;
 
     private boolean actived;
+    
+    private String token;
 
     public UserLogin(int id, String username, String email, String password, boolean actived) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
-        this.actived = actived;
     }
 
     public int getId() {
@@ -68,6 +69,14 @@ public class UserLogin {
 
 	public void setActived(boolean actived) {
 		this.actived = actived;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
 	}
 
 
